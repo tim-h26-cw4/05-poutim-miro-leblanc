@@ -1,3 +1,5 @@
+import Poutine from './Poutine.js';
+
 export default class Chef {
   constructor(element) {
     this.element = element;
@@ -10,7 +12,8 @@ export default class Chef {
     const poutines = this.element.querySelectorAll('.js-poutine');
     for (let i = 0; i < poutines.length; i++) {
       const poutine = poutines[i];
-      this.menu.push(poutine);
+      const instance = new Poutine(poutine);
+      this.menu.push(instance);
     }
 
     const btnCommandes = this.element.querySelectorAll('.js-btn-commande');
