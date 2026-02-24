@@ -4,7 +4,7 @@ export default class Chef {
   constructor(element) {
     this.element = element;
     this.menu = [];
-    this.container = '';
+    this.container = this.element.querySelector('.js-container');
     this.init();
   }
 
@@ -16,12 +16,22 @@ export default class Chef {
       this.menu.push(instance);
     }
 
-    const btnCommandes = this.element.querySelectorAll('.js-btn-commande');
-    for (let i = 0; i < btnCommandes.length; i++) {
-      const btnCommande = btnCommandes[i];
-      btnCommande.addEventListener('click', this.sendOrder.bind(this));
-    }
+    const btnCommande = this.element.querySelector('.js-btn-commande');
+    btnCommande.addEventListener('click', this.sendOrder.bind(this));
   }
 
-  sendOrder() {}
+  sendOrder() {
+    this.container.innerHTML = '';
+    let compteur = 0;
+    for (let i = 0; i < this.menu.length; i++) {
+      const menucomplet = this.menu[i].selectedType;
+      if (menucomplet !== '') {
+        compteur++;
+      }
+    }
+
+    const paragraphe = document.createElement('p');
+    paragraphe.innerText = `Nombre total de poutine(s) : ${compteur}`;
+    this.container.appendChild(paragraphe);
+  }
 }

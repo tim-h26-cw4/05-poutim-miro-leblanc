@@ -20,7 +20,6 @@ export default class Poutine {
     }
     event.currentTarget.classList.add('is-active');
     this.selectedType = event.currentTarget.name;
-    console.log(this.selectedType);
     this.updatePhoto();
   }
 
